@@ -1,0 +1,36 @@
+---
+import Page from "../layouts/Page.astro";
+---
+
+<Page>
+    <main>
+        <div class="pfp">
+            <img src="/Landing/TiredFox.png" alt="Profile Picture" />
+        </div>
+    </main>
+
+    <style lang="scss">
+        main {
+            background-color: rgb(0, 0, 0, 0.5);
+            // border: 2px solid white;
+            box-shadow: 0 0 8px -1px black;
+            width: 85%;
+            height: 85%;
+
+            border-radius: 2rem;
+            padding: 1rem;
+        }
+
+        .pfp {
+            display: flex;
+            justify-content: center;
+
+            img {
+                width: 12%;
+                height: auto;
+
+                border-radius: 50% 0;
+            }
+        }
+    </style>
+</Page>

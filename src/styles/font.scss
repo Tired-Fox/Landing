@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Poppins&display=swap');
+
+@import "functions";
+
+// Create dynamic linear font sizes
+@for $i from 1 through 6 {
+
+    // Generate the headers font-sizes with a .5 linear offset from H1
+    h#{$i},
+    .h#{$i} {
+        font-size: font-clamp(($i - 1) * .5);
+    }
+}
+
+// These are more that .5 smaller than H6
+p,
+li,
+a,
+th,
+td,
+code,
+mark {
+
+    font-family: 'Poppins', sans-serif;
+    font-size: font-clamp(2.5);
+}
+
+.normal {
+    font-size: font-clamp(2.5);
+}
+
+.small {
+    font-size: font-clamp(2.75);
+}
+
+sup,
+sub,
+kbd,
+cite {
+
+    font-family: 'Poppins', sans-serif;
+    font-size: font-clamp(2.75);
+}
+
+em,
+span,
+strong,
+del,
+time,
+abbr {
+    font-size: inherit;
+    color: inherit;
+    font-family: inherit;
+}
+
+
+span {
+    font-weight: inherit;
+}
+
+.poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
+.oswald {
+    font-family: 'Oswald', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Oswald', sans-serif;
+}
