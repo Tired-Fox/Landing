@@ -1,17 +1,20 @@
 ---
+import { WeatherWidget } from "../components/Widgets/Weather/Weather";
 import Page from "../layouts/Page.astro";
 ---
 
 <Page>
     <main>
-        <div class="pfp">
-            <img src="/Landing/TiredFox.png" alt="Profile Picture" />
+        <div class="widgets">
+            <WeatherWidget client:visible />
         </div>
+        <div class="links"></div>
     </main>
 
     <style lang="scss">
+        @import "../styles/break.scss";
+
         main {
-            background-color: rgb(0, 0, 0, 0.5);
             // border: 2px solid white;
             box-shadow: 0 0 8px -1px black;
             width: 85%;
@@ -21,15 +24,17 @@ import Page from "../layouts/Page.astro";
             padding: 1rem;
         }
 
-        .pfp {
-            display: flex;
-            justify-content: center;
+        @media (prefers-color-scheme: dark) {
+            // Sky gradients https://codepen.io/billyysea/pen/nLroLY
+            main {
+                background: rgb(0, 0, 0, 0.3);
+            }
+        }
 
-            img {
-                width: 12%;
-                height: auto;
-
-                border-radius: 50% 0;
+        @media (prefers-color-scheme: light) {
+            // Sky gradients https://codepen.io/billyysea/pen/nLroLY
+            main {
+                background: rgb(0, 0, 0, 0.6);
             }
         }
     </style>

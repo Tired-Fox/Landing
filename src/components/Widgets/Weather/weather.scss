@@ -1,0 +1,106 @@
+@mixin background-light {
+    background: rgb(208, 15, 184);
+    background: -moz-linear-gradient(62deg, rgba(208, 15, 184, 1) 0%, rgba(255, 68, 7, 1) 57%, rgba(255, 158, 0, 1) 89%);
+    background: -webkit-linear-gradient(62deg, rgba(208, 15, 184, 1) 0%, rgba(255, 68, 7, 1) 57%, rgba(255, 158, 0, 1) 89%);
+    background: linear-gradient(62deg, rgba(208, 15, 184, 1) 0%, rgba(255, 68, 7, 1) 57%, rgba(255, 158, 0, 1) 89%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d00fb8", endColorstr="#ff9e00", GradientType=1);
+}
+
+@mixin background-dark {
+    background: rgb(32, 32, 44);
+    background: -moz-linear-gradient(62deg, rgba(32, 32, 44, 1) 0%, rgba(81, 81, 117, 1) 100%);
+    background: -webkit-linear-gradient(62deg, rgba(32, 32, 44, 1) 0%, rgba(81, 81, 117, 1) 100%);
+    background: linear-gradient(62deg, rgba(32, 32, 44, 1) 0%, rgba(81, 81, 117, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#20202c", endColorstr="#515175", GradientType=1);
+}
+
+@media (prefers-color-scheme: dark) {
+
+    // Sky gradients https://codepen.io/billyysea/pen/nLroLY
+
+    body {
+        @include background-dark;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+
+    body {
+        @include background-light;
+    }
+}
+
+
+.weather-widget {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    border-radius: 2rem;
+
+    background: linear-gradient(to bottom, #90dffe 0%, #38a3d1 100%);
+    box-shadow: 2px 2px 8px -3px black;
+    color: white;
+
+
+
+    .weather-overall {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-evenly;
+        gap: 3rem;
+
+        margin: 1rem;
+
+        .weather-temp {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .weather-temp-range {
+                display: flex;
+                gap: 1rem;
+
+                .weather-temp-max {
+                    font-weight: bold;
+                    // color: rgb(166, 13, 13);
+                }
+
+                .weather-temp-min {
+                    font-weight: bold;
+                    // color: rgb(39, 39, 228);
+                }
+            }
+        }
+
+        .weather-desc {
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+
+            p {
+                text-align: center;
+            }
+        }
+
+        .weather-additional {
+            i {
+                margin-right: 1rem;
+            }
+        }
+
+
+    }
+}
+
+.hr {
+    width: 90%;
+    height: 2px;
+    background-color: rgb(255, 255, 255, .5);
+    margin-inline: auto;
+    margin-block: 1rem;
+}
