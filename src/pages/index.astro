@@ -7,6 +7,7 @@ import { sections } from "../data/links.json";
 ---
 
 <Page>
+    <div class="background"></div>
     <main>
         <div>
             <div class="widgets">
@@ -27,18 +28,26 @@ import { sections } from "../data/links.json";
 
     <style lang="scss">
         @import "../styles/break.scss";
-
         main {
             // border: 2px solid white;
             box-shadow: 0 0 8px -1px black;
             width: 85%;
             height: fit-content;
-
+            margin-block: 5rem;
             border-radius: 2rem;
 
             & > div {
                 margin: 1rem;
             }
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
         }
 
         @media (prefers-color-scheme: dark) {
@@ -52,6 +61,63 @@ import { sections } from "../data/links.json";
             // Sky gradients https://codepen.io/billyysea/pen/nLroLY
             main {
                 background: rgb(0, 0, 0, 0.6);
+            }
+        }
+
+        @mixin background-light {
+            background: rgb(208, 15, 184);
+            background: -moz-linear-gradient(
+                62deg,
+                rgba(208, 15, 184, 1) 0%,
+                rgba(255, 68, 7, 1) 57%,
+                rgba(255, 158, 0, 1) 89%
+            );
+            background: -webkit-linear-gradient(
+                62deg,
+                rgba(208, 15, 184, 1) 0%,
+                rgba(255, 68, 7, 1) 57%,
+                rgba(255, 158, 0, 1) 89%
+            );
+            background: linear-gradient(
+                62deg,
+                rgba(208, 15, 184, 1) 0%,
+                rgba(255, 68, 7, 1) 57%,
+                rgba(255, 158, 0, 1) 89%
+            );
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d00fb8", endColorstr="#ff9e00", GradientType=1);
+        }
+
+        @mixin background-dark {
+            background: rgb(32, 32, 44);
+            background: -moz-linear-gradient(
+                62deg,
+                rgba(32, 32, 44, 1) 0%,
+                rgba(81, 81, 117, 1) 100%
+            );
+            background: -webkit-linear-gradient(
+                62deg,
+                rgba(32, 32, 44, 1) 0%,
+                rgba(81, 81, 117, 1) 100%
+            );
+            background: linear-gradient(
+                62deg,
+                rgba(32, 32, 44, 1) 0%,
+                rgba(81, 81, 117, 1) 100%
+            );
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#20202c", endColorstr="#515175", GradientType=1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            // Sky gradients https://codepen.io/billyysea/pen/nLroLY
+
+            .background {
+                @include background-dark;
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .background {
+                @include background-light;
             }
         }
     </style>
