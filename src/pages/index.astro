@@ -3,7 +3,7 @@ import LinkSection from "../components/LinkSection.astro";
 import { WeatherWidget } from "../components/Widgets/Weather/Weather";
 import Page from "../layouts/Page.astro";
 
-import { sections } from "../data/links.json";
+import Links from "../data/links.json";
 ---
 
 <Page>
@@ -11,11 +11,11 @@ import { sections } from "../data/links.json";
     <main>
         <div>
             {
-                sections.map((linkSection) => {
+                Object.entries(Links).map((linkSection) => {
                     return (
                         <LinkSection
-                            title={linkSection.name}
-                            links={linkSection.links}
+                            title={linkSection[0]}
+                            links={linkSection[1]}
                         />
                     );
                 })
