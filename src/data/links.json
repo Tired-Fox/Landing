@@ -19,7 +19,7 @@
                         "fas",
                         "envelope"
                     ],
-                    "color": "#F7B801"
+                    "color": "-webkit-linear-gradient(-120deg, #4285f4, #34a853, #fbbc05, #ea4335);"
                 }
             ]
         },
@@ -44,6 +44,16 @@
                         "droplet"
                     ],
                     "color": "#0183FE"
+                },
+                {
+                    "name": "docs.astro.build",
+                    "title": "Astro",
+                    "href": "https://docs.astro.build/en/guides/deploy/render/#how-to-deploy",
+                    "icon": [
+                        "fas",
+                        "meteor"
+                    ],
+                    "color": "#ff7e33"
                 }
             ]
         },

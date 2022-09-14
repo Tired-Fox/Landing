@@ -10,7 +10,7 @@ const { title, links } = Astro.props;
 ---
 
 <div class="link-section">
-    <h2>{title}</h2>
+    <!-- <h3>{title}</h3> -->
     <div>
         {
             links &&
@@ -30,13 +30,13 @@ const { title, links } = Astro.props;
 </div>
 <style lang="scss">
     .link-section {
-        width: 90%;
+        width: 100%;
         margin-inline: auto;
-        margin-block: 5rem;
+        margin-block: 2rem;
         color: white;
 
         & > div {
-            width: 90%;
+            width: 100%;
             margin-inline: auto;
 
             display: flex;

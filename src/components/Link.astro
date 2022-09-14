@@ -1,5 +1,6 @@
 ---
 import FAIcon from "./FAIcon.astro";
+import { Link } from "./Widgets/Link/Link";
 
 export interface Props {
     name: string;
@@ -10,34 +11,17 @@ export interface Props {
 }
 
 const { name, href, icon, color, title } = Astro.props;
+
+const Redirect = (href) => {
+    window.open(href, "_blank");
+};
 ---
 
-<div class="link">
-    <a href={href} title={title ? title : name} target="_blank">
-        <FAIcon
-            icon={icon}
-            style={color ? `color: ${color}` : ""}
-            className="h1"
-        />
-    </a>
-    <p class="small"><strong>{name}</strong></p>
-</div>
-<style lang="scss">
-    .link {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        a {
-            i {
-                transition: all 0.3s;
-            }
-
-            &:hover {
-                i {
-                    color: gray !important;
-                }
-            }
-        }
-    }
-</style>
+<Link href={href} client:visible title={title}>
+    <FAIcon
+        icon={icon}
+        style={`background: ${color}; -webkit-background-clip: text; -webkit-text-fill-color: transparent;`}
+        className="h1"
+    />
+    <!-- <p>{name}</p> -->
+</Link>
