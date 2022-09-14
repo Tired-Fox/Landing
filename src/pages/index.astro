@@ -10,9 +10,6 @@ import { sections } from "../data/links.json";
     <div class="background"></div>
     <main>
         <div>
-            <div class="widgets">
-                <WeatherWidget client:visible />
-            </div>
             {
                 sections.map((linkSection) => {
                     return (
@@ -23,6 +20,9 @@ import { sections } from "../data/links.json";
                     );
                 })
             }
+            <div class="widgets">
+                <WeatherWidget client:visible />
+            </div>
         </div>
     </main>
 

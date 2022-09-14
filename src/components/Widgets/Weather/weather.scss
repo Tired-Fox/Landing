@@ -1,3 +1,4 @@
+@import "../../../styles/break.scss";
 
 .weather-widget {
     display: flex;
@@ -7,11 +8,15 @@
     width: 100%;
     border-radius: 2rem;
 
-    background: linear-gradient(to bottom, #90dffe 0%, #38a3d1 100%);
+    background: linear-gradient(to bottom, #2d91c2 0%, #1e528e 100%);
     box-shadow: 2px 2px 8px -3px black;
     color: white;
 
-
+    a {
+        width: 100%;
+        text-decoration: none;
+        color: white;
+    }
 
     .weather-overall {
         display: flex;
@@ -27,21 +32,6 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-
-            .weather-temp-range {
-                display: flex;
-                gap: 1rem;
-
-                .weather-temp-max {
-                    font-weight: bold;
-                    // color: rgb(166, 13, 13);
-                }
-
-                .weather-temp-min {
-                    font-weight: bold;
-                    // color: rgb(39, 39, 228);
-                }
-            }
         }
 
         .weather-desc {
@@ -63,6 +53,79 @@
 
 
     }
+
+    #forecast {
+        width: 95%;
+        margin-inline: auto;
+        height: 100%;
+        overflow: hidden;
+
+        .forecast-day {
+            width: 100%;
+            border-block: 1px solid white;
+
+            &>div {
+                display: flex;
+                justify-content: space-evenly;
+                width: 100%;
+
+                margin-block: 2rem;
+
+
+                .forecast-hourly {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 1rem;
+
+                    img {
+                        $size: 3rem;
+                        width: $size;
+                        height: $size;
+                    }
+
+                    @media only screen and (min-width: $mobile) {
+                        img {
+                            $size: 6rem;
+                            width: $size;
+                            height: $size;
+                        }
+                    }
+
+                    @media only screen and (min-width: $desktop) {
+                        img {
+                            $size: 8rem;
+                            width: $size;
+                            height: $size;
+                        }
+                    }
+
+                    .data {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 2rem;
+
+                        .extra {
+                            display: flex;
+                        }
+                    }
+
+                    .time {
+                        width: fit-content;
+                        height: fit-content;
+                    }
+                }
+            }
+
+
+
+        }
+    }
+}
+
+.collapse {
+    height: 0 !important;
 }
 
 .hr {
@@ -71,4 +134,8 @@
     background-color: rgb(255, 255, 255, .5);
     margin-inline: auto;
     margin-block: 1rem;
+}
+
+.mt-5 {
+    margin-top: 5rem;
 }
