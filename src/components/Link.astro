@@ -1,0 +1,43 @@
+---
+import FAIcon from "./FAIcon.astro";
+
+export interface Props {
+    name: string;
+    title?: string;
+    href: string;
+    icon: array;
+    color?: string;
+}
+
+const { name, href, icon, color, title } = Astro.props;
+---
+
+<div class="link">
+    <a href={href} title={title ? title : name} target="_blank">
+        <FAIcon
+            icon={icon}
+            style={color ? `color: ${color}` : ""}
+            className="h1"
+        />
+    </a>
+    <p class="small"><strong>{name}</strong></p>
+</div>
+<style lang="scss">
+    .link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        a {
+            i {
+                transition: all 0.3s;
+            }
+
+            &:hover {
+                i {
+                    color: gray !important;
+                }
+            }
+        }
+    }
+</style>

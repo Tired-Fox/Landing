@@ -1,14 +1,28 @@
 ---
+import LinkSection from "../components/LinkSection.astro";
 import { WeatherWidget } from "../components/Widgets/Weather/Weather";
 import Page from "../layouts/Page.astro";
+
+import { sections } from "../data/links.json";
 ---
 
 <Page>
     <main>
-        <div class="widgets">
-            <WeatherWidget client:visible />
+        <div>
+            <div class="widgets">
+                <WeatherWidget client:visible />
+            </div>
+            {
+                sections.map((linkSection) => {
+                    return (
+                        <LinkSection
+                            title={linkSection.name}
+                            links={linkSection.links}
+                        />
+                    );
+                })
+            }
         </div>
-        <div class="links"></div>
     </main>
 
     <style lang="scss">
@@ -18,10 +32,13 @@ import Page from "../layouts/Page.astro";
             // border: 2px solid white;
             box-shadow: 0 0 8px -1px black;
             width: 85%;
-            height: 85%;
+            height: fit-content;
 
             border-radius: 2rem;
-            padding: 1rem;
+
+            & > div {
+                margin: 1rem;
+            }
         }
 
         @media (prefers-color-scheme: dark) {

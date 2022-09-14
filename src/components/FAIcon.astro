@@ -1,0 +1,30 @@
+---
+export interface Props {
+    icon: array
+    className?: string
+    style?: string
+}
+const { icon, style, className } = Astro.props;
+
+const Icon = ['fa-solid', 'fa-circle-info']
+if (icon?.length === 2) {
+    switch (icon[0]) {
+        case 'fab':
+            Icon[0] = 'fa-brands';
+            break;
+        case 'far':
+            Icon[0] = 'fa-regular';
+            break
+        case 'fas':
+        default:
+            Icon[0] = 'fa-solid';
+            break;
+    }
+
+    Icon[1] = `fa-${icon[1]}`;
+} else {
+    Icon = ['fa-solid', 'fa-circle-info']
+}
+---
+
+<i class={`${Icon[0]} ${Icon[1]} ${className} fontawesomeicon`} style={style ? style : ""} />

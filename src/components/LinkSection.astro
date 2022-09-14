@@ -1,0 +1,47 @@
+---
+import Link from "./Link.astro";
+
+export interface Props {
+    title: stirng;
+    links: array;
+}
+
+const { title, links } = Astro.props;
+---
+
+<div class="link-section">
+    <h2>{title}</h2>
+    <div>
+        {
+            links &&
+                links.map((link) => {
+                    return (
+                        <Link
+                            name={link.name}
+                            title={link.title ? link.title : ""}
+                            href={link.href}
+                            icon={link.icon}
+                            color={link.color ? link.color : "#FFFFFF"}
+                        />
+                    );
+                })
+        }
+    </div>
+</div>
+<style lang="scss">
+    .link-section {
+        width: 90%;
+        margin-inline: auto;
+        margin-block: 5rem;
+        color: white;
+
+        & > div {
+            width: 90%;
+            margin-inline: auto;
+
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+    }
+</style>

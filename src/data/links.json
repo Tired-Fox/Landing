@@ -1,0 +1,84 @@
+{
+    "sections": [
+        {
+            "name": "Media",
+            "links": [
+                {
+                    "name": "Youtube",
+                    "href": "https://www.youtube.com",
+                    "icon": [
+                        "fab",
+                        "youtube"
+                    ],
+                    "color": "#FF0000"
+                },
+                {
+                    "name": "Gmail",
+                    "href": "https://mail.google.com/mail/u/0/#inbox",
+                    "icon": [
+                        "fas",
+                        "envelope"
+                    ],
+                    "color": "#F7B801"
+                }
+            ]
+        },
+        {
+            "name": "Dev",
+            "links": [
+                {
+                    "name": "Github",
+                    "href": "https://www.github.com",
+                    "icon": [
+                        "fab",
+                        "github"
+                    ],
+                    "color": "#6e5494"
+                },
+                {
+                    "name": "Coolors",
+                    "title": "Coolors.co",
+                    "href": "https://coolors.co/generate",
+                    "icon": [
+                        "fas",
+                        "droplet"
+                    ],
+                    "color": "#0183FE"
+                }
+            ]
+        },
+        {
+            "name": "My Sites",
+            "links": [
+                {
+                    "name": "Portfolio",
+                    "href": "https://tired-fox.github.io/Zachary-Boehm",
+                    "icon": [
+                        "fas",
+                        "book-open-reader"
+                    ],
+                    "color": "#BFD3C1"
+                },
+                {
+                    "name": "TNABOC",
+                    "title": "Totally Not a Bunch of Cats",
+                    "href": "https://totally-not-a-bunch-of-cats.github.io/Totally-Not-a-Bunch-of-Cats/",
+                    "icon": [
+                        "fas",
+                        "cat"
+                    ],
+                    "color": "#D6B39A"
+                },
+                {
+                    "name": "Mock Browser",
+                    "href": "https://tired-fox.github.io/mock-browser/",
+                    "icon": [
+                        "fas",
+                        "globe"
+                    ],
+                    "color": "#84CAE7"
+                }
+            ]
+        }
+    ]
+}
