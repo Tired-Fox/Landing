@@ -1,8 +1,6 @@
 import { h, Fragment } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
-import { lon, lat, units, weatherkey } from '../../../data/weather';
-import { DateTime } from 'luxon';
-
+import { GetWeather, GetAirPollution, GetForecast, parseWeather, parseForecast } from './_Weather';
 import './weather.scss';
 
 const unitSymbols = {
@@ -14,105 +12,23 @@ const unitSymbols = {
     }
 }
 
-const aqi = ['Good', 'Fair', 'Moderate', 'Poor', 'Very Poor']
-
-const GetWeather = async () => {
-    const OPEN_WEATHER_MAP = `https://api.openweathermap.org/data/2.5/weather?&lat=${lat}&lon=${lon}&units=${units}&appid=${weatherkey} `
-
-    return (await (await fetch(OPEN_WEATHER_MAP, { "method": "GET", "headers": {} })).json());
-}
-
-const GetAirPollution = async () => {
-    const OPEN_WEATHER_MAP = `https://api.openweathermap.org/data/2.5/air_pollution?&lat=${lat}&lon=${lon}&units=${units}&appid=${weatherkey} `
-
-    return (await (await fetch(OPEN_WEATHER_MAP, { "method": "GET", "headers": {} })).json());
-}
-
-const GetForecast = async () => {
-    const OPEN_WEATHER_MAP = `https://api.openweathermap.org/data/2.5/forecast?&lat=${lat}&lon=${lon}&units=${units}&appid=${weatherkey} `
-
-    return (await (await fetch(OPEN_WEATHER_MAP, { "method": "GET", "headers": {} })).json());
-}
-
-const formatTime = (unixTS) => {
-    return DateTime.fromMillis(unixTS * 1000).toFormat('t')
-}
-
-const formatDate = (unixTS) => {
-    return DateTime.fromMillis(unixTS * 1000).toFormat('EEE LLL d')
-}
-
-const range = (val, first, second) => {
-    return first <= deg || deg <= second;
-}
-
-const degToCompass = (num) => {
-    const val = Math.floor((num / 22.5) + .5)
-    const arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
-    return arr[(val % 16)]
-}
-
-
-const parseWeather = (Weather, Pollution) => {
-    let response = {}
-
-    // TODO: Add units where applicable
-    response.country = Weather.sys.country;
-    response.city = Weather.name;
-    response.unit = units;
-    response.temp = {
-        feels: Math.floor(Weather.main.feels_like),
-        actual: Math.floor(Weather.main.temp),
-        max: Math.floor(Weather.main.temp_max),
-        min: Math.floor(Weather.main.temp_min),
-        hum: Weather.main.humidity
-    }
-    response.sun = {
-        // TODO: Format date
-        rise: formatTime(Weather.sys.sunrise),
-        set: formatTime(Weather.sys.sunset)
-    }
-    response.rain = {
-        oneHour: Weather.rain ? Weather.rain["1h"] : null,
-        threeHour: Weather.rain ? Weather.rain["3h"] : null
-    }
-
-    response.snow = {
-        oneHour: Weather.snow ? Weather.snow["1h"] : null,
-        threeHour: Weather.snow ? Weather.snow["3h"] : null
-    }
-
-    response.date = formatDate(Weather.dt)
-
-    response.wind = {
-        speed: Math.floor(Weather.wind.speed),
-        dir: degToCompass(Weather.wind.deg)
-    }
-
-    response.weather = Weather.weather[0].main;
-    response.description = Weather.weather[0].description;
-    response.icon = `http://openweathermap.org/img/wn/${Weather.weather[0].icon}@2x.png`;
-    response.aqi = aqi[Pollution.list[0].main.aqi];
-
-    return response;
-}
-
-const parseForecast = ({ list }) => {
-    console.log(list);
-}
-
 // Uses OpenWeatherMap
 export function WeatherWidget({ ...props }) {
 
+    const [weather, setWeather] = useState(null);
+    const [forecast, setForecast] = useState(null);
+
     const GetWeatherData = async () => {
-        console.log(parseForecast(await GetForecast()));
-        return parseWeather(await GetWeather(), await GetAirPollution());
+        return parseWeather(await GetWeather(), (await GetAirPollution('')).list[0].main.aqi);
     }
 
-    const [weather, setWeather] = useState(null);
+    const GetForecastData = async () => {
+        return parseForecast(await GetForecast(), await GetAirPollution('/forecast'));
+    }
 
     useEffect(async () => {
         setWeather(await GetWeatherData());
+        setForecast(await GetForecastData());
     }, [])
 
     return (
