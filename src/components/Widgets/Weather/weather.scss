@@ -63,7 +63,21 @@
             width: 100%;
             border-block: 1px solid white;
 
-            &>div {
+            .forecast-day-header {
+                display: flex;
+                gap: 10%;
+                align-items: center;
+
+                &>* {
+                    width: fit-content;
+                    height: fit-content;
+                    gap: 1em;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+
+            .forecast-day-hours {
                 display: flex;
                 justify-content: space-evenly;
                 width: 100%;
@@ -107,10 +121,23 @@
 
                         .extra {
                             display: flex;
+                            flex-direction: column;
+                            align-items: center;
 
-                            @media only screen and (max-width: $mobile) {
-                                flex-direction: column;
-                                align-items: center;
+                            .wet {
+                                display: flex;
+                                gap: .5rem;
+
+                                @media only screen and (max-width: $mobile) {
+                                    flex-direction: column;
+                                    align-items: center;
+                                    gap: 0;
+                                }
+                            }
+
+                            .wind {
+                                display: flex;
+                                gap: 1rem;
                             }
                         }
                     }
@@ -142,4 +169,36 @@
 
 .mt-5 {
     margin-top: 5rem;
+}
+
+$pollution: (
+    "Good": rgb(19, 213, 19),
+    "Fair": orange,
+    "Moderate": yellow,
+    "Poor": red,
+    "Very Poor": deeppink,
+    "NA": black
+);
+
+$wind: (
+    "NonThreatening": rgb(19, 213, 19),
+    "VeryLow": rgb(255, 255, 141),
+    "Low": yellow,
+    "Moderate": orange,
+    "High": high,
+    "Extreme": deeppink
+);
+
+@each $kind,
+$color in $wind {
+    .wind-#{$kind} {
+        color: $color;
+    }
+}
+
+@each $kind,
+$color in $pollution {
+    .pollution-#{$kind} {
+        color: $color;
+    }
 }

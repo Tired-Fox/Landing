@@ -5,7 +5,8 @@ import {
     GetAirPollution,
     GetForecast,
     parseWeather,
-    parseForecast
+    parseForecast,
+    windToCSS
 } from './_Weather';
 import './weather.scss';
 
@@ -19,7 +20,6 @@ const unitSymbols = {
 }
 
 export function HourlyCard({ ...props }) {
-
     return (
         <>
             <div class="forecast-hourly">
@@ -35,9 +35,15 @@ export function HourlyCard({ ...props }) {
                         {props.data.temp.actual}
                     </h3>
                     <div class="extra">
-                        <p class="h6"> {props.data.temp.hum}% </p>
-                        <p class="h6" > <i class="fa-solid fa-droplet"></i> </p>
-                        <p class="h6" > {Math.floor(props.data.cor * 100)}% </p>
+                        <div class="wind">
+                            <p><i class={`fa-solid fa-wind wind-${windToCSS(props.data.wind.speed)}`}></i></p>
+                            <p class="desktop">{props.data.wind.speed} {props.data.wind.dir}</p>
+                        </div>
+                        <div class="wet">
+                            <p class="h6" title="Humidity"> {props.data.temp.hum}% </p>
+                            <p class="h6" > <i class={`fa-solid fa-droplet`}></i> </p>
+                            <p class="h6" title="Chance of rain"> {Math.floor(props.data.cor * 100)}% </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -52,8 +58,12 @@ export function WeatherHourlyCards({ ...props }) {
         <>
             <div class="forecast-day">
 
-                <h3>{forecast[0].date}</h3>
-                <div>
+                <div className="forecast-day-header">
+
+                    <h3>{forecast[0].date}</h3>
+                    <p><i class={`fa-solid fa-virus pollution-${forecast[0].aqi.replace('/', '')}`} title={forecast[0].aqi}></i> {forecast[0].aqi}</p>
+                </div>
+                <div class="forecast-day-hours">
                     {
                         forecast.map((hour) => {
                             return (
@@ -141,9 +151,9 @@ export function Weather({ ...props }) {
                             <p class="mobile h5">H: {weather.temp.max} | L: {weather.temp.min}</p>
                         </div>
                         <div class="weather-additional">
-                            <p title="Wind speed and direction"><strong><i class="fa-solid fa-wind"></i> {weather.wind.speed} mph {weather.wind.dir}</strong></p>
-                            <p title="Air pollution"><strong><i class="fa-solid fa-virus"></i> {weather.aqi}</strong></p>
-                            <p title="Feels like"><strong><i class="fa-solid fa-temperature-three-quarters"></i> {weather.temp.feels}<sup>{unitSymbols[weather.unit].temp}</sup></strong></p>
+                            <p title="Wind speed and direction"><strong><i class={`fa-solid fa-wind wind-${windToCSS(weather.wind.speed)}`}></i> {weather.wind.speed} {weather.wind.dir}</strong></p>
+                            <p title="Pollutants"><strong><i class={`fa-solid fa-virus pollution-${weather.aqi.replace('/', '')}`}></i> {weather.aqi}</strong></p>
+                            {/* <p title="Feels like"><strong><i class="fa-solid fa-temperature-three-quarters"></i> {weather.temp.feels}<sup>{unitSymbols[weather.unit].temp}</sup></strong></p> */}
                         </div>
                     </div>
                 </a>
