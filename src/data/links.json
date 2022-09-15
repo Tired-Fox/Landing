@@ -48,6 +48,26 @@
                 "meteor"
             ],
             "color": "#ff7e33"
+        },
+        {
+            "name": "SvelteKit",
+            "title": "SveltKit Docs",
+            "href": "https://kit.svelte.dev/docs/introduction",
+            "icon": [
+                "fas",
+                "link"
+            ],
+            "color": "#ff7e33"
+        },
+        {
+            "name": "Preact",
+            "title": "Preact Guide",
+            "href": "https://preactjs.com/guide/v10/getting-started",
+            "icon": [
+                "fab",
+                "react"
+            ],
+            "color": "#194D33"
         }
     ],
     "My Sites": [
