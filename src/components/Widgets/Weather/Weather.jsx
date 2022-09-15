@@ -24,7 +24,7 @@ export function HourlyCard({ ...props }) {
         <>
             <div class="forecast-hourly">
                 <div class="time">
-                    <p class="h6">{props.data.dateTime.toFormat('t')}</p>
+                    <p class="h6">{props.data.dateTime.toFormat('h a')}</p>
                 </div>
                 <img src={props.data.icon} alt="Forecast icon" />
                 <div class="data">
@@ -35,7 +35,9 @@ export function HourlyCard({ ...props }) {
                         {props.data.temp.actual}
                     </h3>
                     <div class="extra">
-                        <p class="h6" title={`Humidity: ${props.data.temp.hum}`}>{props.data.temp.hum}% <i class="fa-solid fa-droplet"></i> {Math.floor(props.data.cor * 100)}%</p>
+                        <p class="h6"> {props.data.temp.hum}% </p>
+                        <p class="h6" > <i class="fa-solid fa-droplet"></i> </p>
+                        <p class="h6" > {Math.floor(props.data.cor * 100)}% </p>
                     </div>
                 </div>
             </div>

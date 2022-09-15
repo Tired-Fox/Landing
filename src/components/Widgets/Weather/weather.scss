@@ -23,7 +23,6 @@
         width: 100%;
         align-items: center;
         justify-content: space-evenly;
-        gap: 3rem;
 
         margin: 1rem;
 
@@ -108,6 +107,11 @@
 
                         .extra {
                             display: flex;
+
+                            @media only screen and (max-width: $mobile) {
+                                flex-direction: column;
+                                align-items: center;
+                            }
                         }
                     }
 
