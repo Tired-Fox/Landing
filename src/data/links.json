@@ -68,6 +68,16 @@
                 "react"
             ],
             "color": "#194D33"
+        },
+        {
+            "name": "PenPot",
+            "title": "PenPot",
+            "href": "https://design.penpot.app/#/dashboard/team/b7cff0a0-37c0-11ed-a5c2-cf2300df1f4f/projects/b7d017b0-37c0-11ed-a5c2-cf2300df1f4f",
+            "icon": [
+                "fas",
+                "pen-nib"
+            ],
+            "color": "#e3e3e3"
         }
     ],
     "My Sites": [
